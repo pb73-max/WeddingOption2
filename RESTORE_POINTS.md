@@ -18,7 +18,19 @@ Each phase completion creates a tagged restore point. Use `git reset --hard [has
 ---
 
 ## Phase 1: Project Setup - Restore Point
-*To be added after Phase 1 completion*
+
+### Git Commit Hash
+`82cd5c4` - [1-6] Add project planning documents
+
+### Rollback Instructions
+```bash
+git reset --hard 82cd5c4
+```
+
+### Files State at This Point
+- index.html: Complete HTML structure with all sections (Hero, Welcome, Events, RSVP, Travel, Footer)
+- styles.css: Full Sunset Bloom theme with responsive styles and animations
+- app.js: Complete functionality (navigation, RSVP, sound, keyboard shortcuts)
 
 ---
 

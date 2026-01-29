@@ -51,7 +51,19 @@ git reset --hard 98d97ac
 ---
 
 ## Phase 3: Navigation & Smooth Scroll - Restore Point
-*To be added after Phase 3 completion*
+
+### Git Commit Hash
+`8dda0a2` - [3-1] Add mobile hamburger menu navigation
+
+### Rollback Instructions
+```bash
+git reset --hard 8dda0a2
+```
+
+### Files State at This Point
+- index.html: Mobile nav toggle, brand logo, improved map embed
+- styles.css: Mobile menu styles, hamburger animation, full-screen overlay
+- app.js: Mobile menu toggle logic, close on navigation
 
 ---
 

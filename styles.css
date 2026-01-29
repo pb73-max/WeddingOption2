@@ -511,6 +511,18 @@ h1, h2, h3, h4 {
   animation: petalSway 4s var(--ease-in-out) 0.5s infinite;
 }
 
+/* Section Dividers */
+.section-divider {
+  width: 200px;
+  margin: 0 auto var(--space-lg);
+  color: var(--color-pink);
+}
+
+.divider-svg {
+  width: 100%;
+  height: auto;
+}
+
 /* ================================
    Welcome Section
    ================================ */
@@ -588,17 +600,19 @@ h1, h2, h3, h4 {
   box-shadow: 0 12px 40px rgba(27, 77, 62, 0.12);
 }
 
-.event-card__arch {
+.event-card__arch-svg {
   position: absolute;
-  top: 0;
+  top: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
-  height: 30px;
-  border: 2px solid currentColor;
-  border-bottom: none;
-  border-radius: 60px 60px 0 0;
-  opacity: 0.3;
+  width: 100px;
+  height: 50px;
+  opacity: 0.4;
+  transition: opacity var(--duration-fast);
+}
+
+.event-card:hover .event-card__arch-svg {
+  opacity: 0.6;
 }
 
 .event-card__content {

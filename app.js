@@ -110,6 +110,29 @@
   }
 
   // ================================
+  // Parallax Effect
+  // ================================
+  function updateParallax() {
+    const scrollY = window.scrollY;
+    const heroDecorElements = document.querySelectorAll('.hero__decor');
+    const floatingMarigolds = document.querySelectorAll('.marigold');
+
+    // Parallax for hero leaves - move at 0.3x scroll speed
+    heroDecorElements.forEach((el, index) => {
+      const speed = 0.3 + (index * 0.05); // Slight variation between elements
+      const yOffset = scrollY * speed;
+      el.style.transform = `translateY(${yOffset}px)`;
+    });
+
+    // Parallax for floating marigolds - move at 0.5x scroll speed
+    floatingMarigolds.forEach((el, index) => {
+      const speed = 0.4 + (index * 0.1);
+      const yOffset = scrollY * speed;
+      el.style.transform = `translateY(${yOffset}px)`;
+    });
+  }
+
+  // ================================
   // Navigation
   // ================================
   function handleScroll() {
@@ -130,6 +153,11 @@
 
     // Scroll to top button visibility
     handleScrollTopVisibility();
+
+    // Update parallax effects
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      requestAnimationFrame(updateParallax);
+    }
 
     state.lastScrollY = scrollY;
   }
@@ -174,7 +202,12 @@
   }
 
   function setupScrollAnimations() {
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    // Select all elements that should animate on scroll
+    const animateElements = document.querySelectorAll(
+      '.animate-on-scroll, .animate-scale-bloom, .animate-slide-left, .animate-slide-right, ' +
+      '.section__title, .section-divider, .welcome__message, .events__day-title, .rsvp__layout, ' +
+      '.event-card, .section-decor'
+    );
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -185,7 +218,7 @@
       });
     }, {
       root: null,
-      rootMargin: '0px 0px -100px 0px',
+      rootMargin: '0px 0px -50px 0px',
       threshold: 0.1
     });
 
@@ -389,14 +422,69 @@
       startCountdown();
     }
 
-    // Mark elements for scroll animation
-    document.querySelectorAll('.event-card, .travel-card, .welcome__message, .venue-card, .accommodation-card, .transport-card').forEach((el, i) => {
+    // Mark event cards for scroll animation with stagger
+    document.querySelectorAll('.event-card').forEach((el, i) => {
+      el.classList.add('animate-on-scroll');
+      el.classList.add(`stagger-${(i % 4) + 1}`);
+    });
+
+    // Mark travel page cards for animation
+    document.querySelectorAll('.travel-card, .venue-card, .accommodation-card, .transport-card').forEach((el, i) => {
       el.classList.add('animate-on-scroll');
       el.classList.add(`stagger-${(i % 6) + 1}`);
     });
 
     // Re-setup scroll animations after marking elements
     setupScrollAnimations();
+
+    // Create floating marigold decorations
+    createFloatingFlorals();
+  }
+
+  // ================================
+  // Floating Floral Decorations
+  // ================================
+  function createFloatingFlorals() {
+    // Check if we're not on mobile (to keep performance good)
+    if (window.innerWidth < 768) return;
+
+    // Check for reduced motion preference
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const container = document.createElement('div');
+    container.className = 'floating-florals';
+    container.setAttribute('aria-hidden', 'true');
+
+    // Create 4 marigold decorations
+    for (let i = 1; i <= 4; i++) {
+      const marigold = document.createElement('div');
+      marigold.className = `marigold marigold--${i}`;
+      marigold.innerHTML = `
+        <svg class="marigold-svg" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="marigoldGrad${i}" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#F26B3A"/>
+              <stop offset="100%" style="stop-color:#F5A572"/>
+            </linearGradient>
+          </defs>
+          <!-- Center -->
+          <circle cx="25" cy="25" r="6" fill="#C9A962"/>
+          <!-- Petals -->
+          <ellipse cx="25" cy="10" rx="5" ry="10" fill="url(#marigoldGrad${i})" opacity="0.9"/>
+          <ellipse cx="40" cy="25" rx="10" ry="5" fill="url(#marigoldGrad${i})" opacity="0.9"/>
+          <ellipse cx="25" cy="40" rx="5" ry="10" fill="url(#marigoldGrad${i})" opacity="0.9"/>
+          <ellipse cx="10" cy="25" rx="10" ry="5" fill="url(#marigoldGrad${i})" opacity="0.9"/>
+          <!-- Diagonal petals -->
+          <ellipse cx="36" cy="14" rx="5" ry="8" fill="url(#marigoldGrad${i})" opacity="0.8" transform="rotate(45 36 14)"/>
+          <ellipse cx="36" cy="36" rx="5" ry="8" fill="url(#marigoldGrad${i})" opacity="0.8" transform="rotate(-45 36 36)"/>
+          <ellipse cx="14" cy="36" rx="5" ry="8" fill="url(#marigoldGrad${i})" opacity="0.8" transform="rotate(45 14 36)"/>
+          <ellipse cx="14" cy="14" rx="5" ry="8" fill="url(#marigoldGrad${i})" opacity="0.8" transform="rotate(-45 14 14)"/>
+        </svg>
+      `;
+      container.appendChild(marigold);
+    }
+
+    document.body.insertBefore(container, document.body.firstChild);
   }
 
   // Start app when DOM ready

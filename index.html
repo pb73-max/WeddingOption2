@@ -21,24 +21,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 
   <!-- Inline styles for botanical floral arrangements -->
   <style>
-    /* Floral container positioning */
+    /* Floral container positioning - matching wedding invite style */
     .hero-floral {
       position: absolute;
-      top: 10%;
-      height: 60vh;
-      width: 150px;
+      top: 5%;
+      height: 75vh;
+      width: 200px;
       pointer-events: none;
       z-index: 1;
     }
     .hero-floral--left {
       left: 0;
-    }
-    .hero-floral--right {
-      right: 0;
     }
     .hero-floral svg {
       width: 100%;
@@ -86,6 +83,7 @@
     .floral-bloom--delay1 { animation-delay: 1.8s; }
     .floral-bloom--delay2 { animation-delay: 2.1s; }
     .floral-bloom--delay3 { animation-delay: 2.4s; }
+    .floral-bloom--delay4 { animation-delay: 2.7s; }
 
     @keyframes bloomIn {
       0% {
@@ -111,28 +109,30 @@
       50% { transform: scale(1.03) rotate(1deg); }
     }
 
-    /* Right side delays */
-    .hero-floral--right .floral-stem { animation-delay: 0.3s; }
-    .hero-floral--right .floral-stem--delay1 { animation-delay: 0.8s; }
-    .hero-floral--right .floral-stem--delay2 { animation-delay: 1.1s; }
-    .hero-floral--right .floral-stem--delay3 { animation-delay: 1.4s; }
-    .hero-floral--right .floral-leaf { animation-delay: 1.3s; }
-    .hero-floral--right .floral-bloom { animation-delay: 1.8s; }
-    .hero-floral--right .floral-bloom--delay1 { animation-delay: 2.1s; }
-    .hero-floral--right .floral-bloom--delay2 { animation-delay: 2.4s; }
-    .hero-floral--right .floral-bloom--delay3 { animation-delay: 2.7s; }
-
-    /* Responsive - hide on small screens */
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      .hero-floral {
+        width: 160px;
+      }
+    }
     @media (max-width: 900px) {
       .hero-floral {
-        width: 100px;
-        opacity: 0.7;
+        width: 120px;
+        opacity: 0.85;
       }
     }
     @media (max-width: 600px) {
       .hero-floral {
+        width: 90px;
+        opacity: 0.7;
+        top: 10%;
+        height: 60vh;
+      }
+    }
+    @media (max-width: 400px) {
+      .hero-floral {
         width: 70px;
-        opacity: 0.5;
+        opacity: 0.6;
       }
     }
 
@@ -288,190 +288,192 @@
 
     <!-- Hero Section -->
     <section id="home" class="section section--hero">
-      <!-- Botanical Floral Arrangement - Left Side -->
+      <!-- Botanical Floral Arrangement - Left Side (matching wedding invite design) -->
       <div class="hero-floral hero-floral--left" aria-hidden="true">
-        <svg viewBox="0 0 150 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <!-- Gradients for watercolor effect -->
-            <linearGradient id="coralPinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#E8707A;stop-opacity:0.9"/>
-              <stop offset="100%" style="stop-color:#D4567A;stop-opacity:0.7"/>
+            <!-- Watercolor gradients -->
+            <linearGradient id="coralPoppyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#E07A85;stop-opacity:0.95"/>
+              <stop offset="50%" style="stop-color:#D4607A;stop-opacity:0.9"/>
+              <stop offset="100%" style="stop-color:#C94D6D;stop-opacity:0.85"/>
             </linearGradient>
-            <linearGradient id="poppyOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#E86A3A;stop-opacity:0.95"/>
-              <stop offset="50%" style="stop-color:#F5A052;stop-opacity:0.85"/>
-              <stop offset="100%" style="stop-color:#E86A3A;stop-opacity:0.8"/>
+            <linearGradient id="orangePoppyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#E8743F;stop-opacity:0.95"/>
+              <stop offset="50%" style="stop-color:#E86A3A;stop-opacity:0.9"/>
+              <stop offset="100%" style="stop-color:#D55A30;stop-opacity:0.85"/>
             </linearGradient>
-            <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#D4567A;stop-opacity:0.9"/>
-              <stop offset="100%" style="stop-color:#E8707A;stop-opacity:0.7"/>
+            <linearGradient id="pinkRoseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#E88A9A;stop-opacity:0.9"/>
+              <stop offset="50%" style="stop-color:#D4607A;stop-opacity:0.85"/>
+              <stop offset="100%" style="stop-color:#C44D68;stop-opacity:0.8"/>
             </linearGradient>
-            <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#6B8E6B;stop-opacity:0.8"/>
-              <stop offset="100%" style="stop-color:#3D5C3D;stop-opacity:0.9"/>
+            <linearGradient id="yellowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#F5D76E;stop-opacity:0.95"/>
+              <stop offset="100%" style="stop-color:#E8B830;stop-opacity:0.9"/>
             </linearGradient>
-            <linearGradient id="stemGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style="stop-color:#8FA888"/>
-              <stop offset="100%" style="stop-color:#6B8E6B"/>
+            <linearGradient id="leafDarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#5A7A5A;stop-opacity:0.9"/>
+              <stop offset="100%" style="stop-color:#3D5C3D;stop-opacity:0.95"/>
             </linearGradient>
-            <!-- Soft blur filter for watercolor effect -->
-            <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-            </filter>
+            <linearGradient id="leafLightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#7A9A7A;stop-opacity:0.85"/>
+              <stop offset="100%" style="stop-color:#5A7A5A;stop-opacity:0.9"/>
+            </linearGradient>
+            <linearGradient id="stemGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#6B8E5A"/>
+              <stop offset="100%" style="stop-color:#4A6B4A"/>
+            </linearGradient>
           </defs>
 
-          <!-- Main curved stem -->
-          <path class="floral-stem" d="M20,500 Q30,400 25,300 Q20,200 40,100 Q50,50 60,20" stroke="url(#stemGrad)" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- === MAIN STEM - organic S-curve from bottom === -->
+          <path class="floral-stem" d="M30,700 Q35,650 30,580 Q25,520 45,450 Q60,400 50,340 Q40,280 60,220 Q75,170 65,120 Q55,80 70,40" stroke="url(#stemGreen)" stroke-width="3" fill="none" stroke-linecap="round"/>
 
-          <!-- Secondary stems branching off -->
-          <path class="floral-stem floral-stem--delay1" d="M25,380 Q50,360 70,370" stroke="url(#stemGrad)" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path class="floral-stem floral-stem--delay2" d="M23,280 Q60,260 85,280" stroke="url(#stemGrad)" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path class="floral-stem floral-stem--delay3" d="M35,150 Q70,130 95,150" stroke="url(#stemGrad)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- Branch stems -->
+          <path class="floral-stem floral-stem--delay1" d="M32,620 Q60,610 90,630" stroke="url(#stemGreen)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path class="floral-stem floral-stem--delay1" d="M45,460 Q85,440 120,470" stroke="url(#stemGreen)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path class="floral-stem floral-stem--delay2" d="M55,350 Q90,330 130,360" stroke="url(#stemGreen)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path class="floral-stem floral-stem--delay2" d="M60,240 Q100,220 140,250" stroke="url(#stemGreen)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path class="floral-stem floral-stem--delay3" d="M65,150 Q95,130 125,155" stroke="url(#stemGreen)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path class="floral-stem floral-stem--delay3" d="M68,80 Q50,60 35,30" stroke="url(#stemGreen)" stroke-width="2" fill="none" stroke-linecap="round"/>
 
-          <!-- Leaves along stems -->
-          <ellipse class="floral-leaf" cx="35" cy="450" rx="15" ry="25" fill="url(#leafGrad)" transform="rotate(-20 35 450)"/>
-          <ellipse class="floral-leaf floral-leaf--delay1" cx="20" cy="350" rx="12" ry="20" fill="url(#leafGrad)" transform="rotate(15 20 350)"/>
-          <ellipse class="floral-leaf floral-leaf--delay2" cx="30" cy="250" rx="14" ry="22" fill="url(#leafGrad)" transform="rotate(-10 30 250)"/>
-          <ellipse class="floral-leaf floral-leaf--delay3" cx="45" cy="180" rx="10" ry="18" fill="url(#leafGrad)" transform="rotate(25 45 180)"/>
-          <ellipse class="floral-leaf floral-leaf--delay4" cx="55" cy="80" rx="8" ry="15" fill="url(#leafGrad)" transform="rotate(-15 55 80)"/>
+          <!-- === LEAVES === -->
+          <!-- Large rounded leaf (lily-pad style) - bottom -->
+          <ellipse class="floral-leaf" cx="55" cy="680" rx="25" ry="35" fill="url(#leafDarkGrad)" transform="rotate(-25 55 680)"/>
+          <path class="floral-leaf" d="M55,700 Q55,665 55,645" stroke="#3D5C3D" stroke-width="1" fill="none" opacity="0.5"/>
 
-          <!-- Poppy flower (focal) - bottom -->
-          <g class="floral-bloom floral-bloom--poppy" filter="url(#softBlur)">
-            <ellipse cx="70" cy="380" rx="30" ry="25" fill="url(#poppyOrangeGrad)" transform="rotate(-15 70 380)"/>
-            <ellipse cx="75" cy="370" rx="28" ry="22" fill="url(#poppyOrangeGrad)" opacity="0.8" transform="rotate(10 75 370)"/>
-            <ellipse cx="65" cy="375" rx="25" ry="20" fill="url(#poppyOrangeGrad)" opacity="0.7" transform="rotate(-5 65 375)"/>
-            <ellipse cx="72" cy="378" rx="22" ry="18" fill="url(#poppyOrangeGrad)" opacity="0.6"/>
-            <circle cx="72" cy="378" r="8" fill="#3D5C3D" opacity="0.8"/>
-            <circle cx="72" cy="378" r="5" fill="#F5C441" opacity="0.9"/>
+          <!-- Elongated leaves along stem -->
+          <ellipse class="floral-leaf floral-leaf--delay1" cx="25" cy="550" rx="12" ry="28" fill="url(#leafDarkGrad)" transform="rotate(15 25 550)"/>
+          <ellipse class="floral-leaf floral-leaf--delay1" cx="70" cy="520" rx="10" ry="22" fill="url(#leafLightGrad)" transform="rotate(-20 70 520)"/>
+          <ellipse class="floral-leaf floral-leaf--delay2" cx="35" cy="400" rx="14" ry="26" fill="url(#leafDarkGrad)" transform="rotate(10 35 400)"/>
+          <ellipse class="floral-leaf floral-leaf--delay2" cx="45" cy="300" rx="11" ry="24" fill="url(#leafLightGrad)" transform="rotate(-15 45 300)"/>
+          <ellipse class="floral-leaf floral-leaf--delay3" cx="55" cy="200" rx="10" ry="20" fill="url(#leafDarkGrad)" transform="rotate(20 55 200)"/>
+          <ellipse class="floral-leaf floral-leaf--delay3" cx="75" cy="100" rx="8" ry="18" fill="url(#leafLightGrad)" transform="rotate(-10 75 100)"/>
+
+          <!-- Small rounded leaf near flowers -->
+          <ellipse class="floral-leaf floral-leaf--delay2" cx="100" cy="380" rx="18" ry="22" fill="url(#leafDarkGrad)" transform="rotate(-30 100 380)"/>
+
+          <!-- === FLOWERS === -->
+
+          <!-- 1. LARGE CORAL-PINK POPPY - Bottom (focal) -->
+          <g class="floral-bloom floral-bloom--delay1">
+            <!-- Outer petals -->
+            <ellipse cx="95" cy="640" rx="40" ry="32" fill="url(#coralPoppyGrad)" transform="rotate(-10 95 640)"/>
+            <ellipse cx="85" cy="625" rx="38" ry="30" fill="url(#coralPoppyGrad)" opacity="0.9" transform="rotate(15 85 625)"/>
+            <ellipse cx="105" cy="630" rx="35" ry="28" fill="#E07A85" opacity="0.85" transform="rotate(-5 105 630)"/>
+            <ellipse cx="90" cy="635" rx="32" ry="26" fill="#D4607A" opacity="0.8"/>
+            <!-- Dark center -->
+            <ellipse cx="92" cy="638" rx="12" ry="10" fill="#2D3D2D" opacity="0.85"/>
+            <!-- Yellow stamens -->
+            <circle cx="88" cy="635" r="2" fill="#F5C441"/>
+            <circle cx="95" cy="633" r="2" fill="#F5C441"/>
+            <circle cx="92" cy="640" r="1.5" fill="#F5C441"/>
+            <circle cx="98" cy="638" r="1.5" fill="#F5C441"/>
           </g>
 
-          <!-- Cosmos flower - middle -->
-          <g class="floral-bloom floral-bloom--cosmos floral-bloom--delay1">
-            <ellipse cx="90" cy="280" rx="20" ry="8" fill="url(#coralPinkGrad)" transform="rotate(0 90 280)"/>
-            <ellipse cx="90" cy="280" rx="20" ry="8" fill="url(#coralPinkGrad)" transform="rotate(45 90 280)"/>
-            <ellipse cx="90" cy="280" rx="20" ry="8" fill="url(#coralPinkGrad)" transform="rotate(90 90 280)"/>
-            <ellipse cx="90" cy="280" rx="20" ry="8" fill="url(#coralPinkGrad)" transform="rotate(135 90 280)"/>
-            <circle cx="90" cy="280" r="6" fill="#F5C441"/>
+          <!-- 2. VIBRANT ORANGE POPPY - Middle -->
+          <g class="floral-bloom floral-bloom--delay2">
+            <ellipse cx="130" cy="475" rx="38" ry="30" fill="url(#orangePoppyGrad)" transform="rotate(10 130 475)"/>
+            <ellipse cx="120" cy="465" rx="35" ry="28" fill="url(#orangePoppyGrad)" opacity="0.9" transform="rotate(-10 120 465)"/>
+            <ellipse cx="135" cy="470" rx="32" ry="25" fill="#E8743F" opacity="0.85"/>
+            <ellipse cx="125" cy="472" rx="28" ry="22" fill="#D55A30" opacity="0.75"/>
+            <!-- Dark center with yellow -->
+            <ellipse cx="127" cy="473" rx="10" ry="8" fill="#2D3D2D" opacity="0.8"/>
+            <circle cx="124" cy="471" r="2" fill="#F5C441"/>
+            <circle cx="130" cy="470" r="2" fill="#F5C441"/>
+            <circle cx="127" cy="475" r="1.5" fill="#F5C441"/>
           </g>
 
-          <!-- Rose/Ranunculus - upper middle -->
-          <g class="floral-bloom floral-bloom--rose floral-bloom--delay2">
-            <circle cx="95" cy="160" r="22" fill="url(#roseGrad)" opacity="0.5"/>
-            <circle cx="95" cy="160" r="18" fill="url(#roseGrad)" opacity="0.6"/>
-            <circle cx="95" cy="160" r="14" fill="url(#roseGrad)" opacity="0.7"/>
-            <circle cx="95" cy="160" r="10" fill="url(#roseGrad)" opacity="0.8"/>
-            <circle cx="95" cy="160" r="6" fill="url(#roseGrad)" opacity="0.9"/>
-            <circle cx="95" cy="160" r="3" fill="#D4567A"/>
+          <!-- 3. YELLOW/GOLDEN RANUNCULUS -->
+          <g class="floral-bloom floral-bloom--delay2">
+            <ellipse cx="140" cy="360" rx="28" ry="24" fill="url(#yellowGrad)" transform="rotate(-5 140 360)"/>
+            <ellipse cx="135" cy="355" rx="24" ry="20" fill="#F5D76E" opacity="0.9"/>
+            <ellipse cx="142" cy="358" rx="20" ry="16" fill="#E8C830" opacity="0.85"/>
+            <ellipse cx="138" cy="360" rx="14" ry="12" fill="#D4A820" opacity="0.8"/>
+            <circle cx="138" cy="360" r="6" fill="#C49010" opacity="0.9"/>
           </g>
 
-          <!-- Small cosmos - top -->
-          <g class="floral-bloom floral-bloom--cosmos floral-bloom--delay3">
-            <ellipse cx="65" cy="50" rx="15" ry="6" fill="url(#coralPinkGrad)" transform="rotate(0 65 50)"/>
-            <ellipse cx="65" cy="50" rx="15" ry="6" fill="url(#coralPinkGrad)" transform="rotate(45 65 50)"/>
-            <ellipse cx="65" cy="50" rx="15" ry="6" fill="url(#coralPinkGrad)" transform="rotate(90 65 50)"/>
-            <ellipse cx="65" cy="50" rx="15" ry="6" fill="url(#coralPinkGrad)" transform="rotate(135 65 50)"/>
-            <circle cx="65" cy="50" r="4" fill="#F5C441"/>
+          <!-- 4. PINK COSMOS - Upper area (delicate 8-petal) -->
+          <g class="floral-bloom floral-bloom--delay3">
+            <ellipse cx="145" cy="255" rx="28" ry="10" fill="url(#coralPoppyGrad)" transform="rotate(0 145 255)"/>
+            <ellipse cx="145" cy="255" rx="28" ry="10" fill="url(#coralPoppyGrad)" transform="rotate(45 145 255)"/>
+            <ellipse cx="145" cy="255" rx="28" ry="10" fill="url(#coralPoppyGrad)" transform="rotate(90 145 255)"/>
+            <ellipse cx="145" cy="255" rx="28" ry="10" fill="url(#coralPoppyGrad)" transform="rotate(135 145 255)"/>
+            <circle cx="145" cy="255" r="8" fill="#F5C441"/>
+            <circle cx="145" cy="255" r="4" fill="#E8A020"/>
           </g>
 
-          <!-- Small marigold accents -->
-          <circle class="floral-bloom floral-bloom--accent" cx="45" cy="420" r="10" fill="#F5A052" opacity="0.7"/>
-          <circle class="floral-bloom floral-bloom--accent floral-bloom--delay1" cx="30" cy="320" r="8" fill="#F5A052" opacity="0.6"/>
-          <circle class="floral-bloom floral-bloom--accent floral-bloom--delay2" cx="50" cy="120" r="7" fill="#F5A052" opacity="0.7"/>
-
-          <!-- Purple bud accents -->
-          <ellipse class="floral-bloom floral-bloom--bud" cx="40" cy="200" rx="4" ry="8" fill="#9E4B6C" opacity="0.7"/>
-          <ellipse class="floral-bloom floral-bloom--bud floral-bloom--delay1" cx="35" cy="215" rx="3" ry="6" fill="#9E4B6C" opacity="0.6"/>
-          <ellipse class="floral-bloom floral-bloom--bud floral-bloom--delay2" cx="45" cy="225" rx="3" ry="7" fill="#9E4B6C" opacity="0.5"/>
-        </svg>
-      </div>
-
-      <!-- Botanical Floral Arrangement - Right Side (mirrored) -->
-      <div class="hero-floral hero-floral--right" aria-hidden="true">
-        <svg viewBox="0 0 150 500" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scaleX(-1);">
-          <defs>
-            <linearGradient id="coralPinkGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#E8707A;stop-opacity:0.9"/>
-              <stop offset="100%" style="stop-color:#D4567A;stop-opacity:0.7"/>
-            </linearGradient>
-            <linearGradient id="poppyOrangeGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#E86A3A;stop-opacity:0.95"/>
-              <stop offset="50%" style="stop-color:#F5A052;stop-opacity:0.85"/>
-              <stop offset="100%" style="stop-color:#E86A3A;stop-opacity:0.8"/>
-            </linearGradient>
-            <linearGradient id="roseGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#D4567A;stop-opacity:0.9"/>
-              <stop offset="100%" style="stop-color:#E8707A;stop-opacity:0.7"/>
-            </linearGradient>
-            <linearGradient id="leafGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#6B8E6B;stop-opacity:0.8"/>
-              <stop offset="100%" style="stop-color:#3D5C3D;stop-opacity:0.9"/>
-            </linearGradient>
-            <linearGradient id="stemGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style="stop-color:#8FA888"/>
-              <stop offset="100%" style="stop-color:#6B8E6B"/>
-            </linearGradient>
-            <filter id="softBlur2" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-            </filter>
-          </defs>
-
-          <!-- Main curved stem -->
-          <path class="floral-stem" d="M20,500 Q30,400 25,300 Q20,200 40,100 Q50,50 60,20" stroke="url(#stemGrad2)" stroke-width="3" fill="none" stroke-linecap="round"/>
-
-          <!-- Secondary stems -->
-          <path class="floral-stem floral-stem--delay1" d="M25,380 Q50,360 70,370" stroke="url(#stemGrad2)" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path class="floral-stem floral-stem--delay2" d="M23,280 Q60,260 85,280" stroke="url(#stemGrad2)" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path class="floral-stem floral-stem--delay3" d="M35,150 Q70,130 95,150" stroke="url(#stemGrad2)" stroke-width="2" fill="none" stroke-linecap="round"/>
-
-          <!-- Leaves -->
-          <ellipse class="floral-leaf" cx="35" cy="450" rx="15" ry="25" fill="url(#leafGrad2)" transform="rotate(-20 35 450)"/>
-          <ellipse class="floral-leaf floral-leaf--delay1" cx="20" cy="350" rx="12" ry="20" fill="url(#leafGrad2)" transform="rotate(15 20 350)"/>
-          <ellipse class="floral-leaf floral-leaf--delay2" cx="30" cy="250" rx="14" ry="22" fill="url(#leafGrad2)" transform="rotate(-10 30 250)"/>
-          <ellipse class="floral-leaf floral-leaf--delay3" cx="45" cy="180" rx="10" ry="18" fill="url(#leafGrad2)" transform="rotate(25 45 180)"/>
-          <ellipse class="floral-leaf floral-leaf--delay4" cx="55" cy="80" rx="8" ry="15" fill="url(#leafGrad2)" transform="rotate(-15 55 80)"/>
-
-          <!-- Cosmos flower (focal for right side) -->
-          <g class="floral-bloom floral-bloom--cosmos" filter="url(#softBlur2)">
-            <ellipse cx="75" cy="370" rx="25" ry="10" fill="url(#coralPinkGrad2)" transform="rotate(0 75 370)"/>
-            <ellipse cx="75" cy="370" rx="25" ry="10" fill="url(#coralPinkGrad2)" transform="rotate(45 75 370)"/>
-            <ellipse cx="75" cy="370" rx="25" ry="10" fill="url(#coralPinkGrad2)" transform="rotate(90 75 370)"/>
-            <ellipse cx="75" cy="370" rx="25" ry="10" fill="url(#coralPinkGrad2)" transform="rotate(135 75 370)"/>
-            <circle cx="75" cy="370" r="7" fill="#F5C441"/>
+          <!-- 5. FULL PINK ROSE - Upper middle -->
+          <g class="floral-bloom floral-bloom--delay3">
+            <circle cx="130" cy="160" r="28" fill="url(#pinkRoseGrad)" opacity="0.5"/>
+            <circle cx="130" cy="160" r="24" fill="url(#pinkRoseGrad)" opacity="0.6"/>
+            <circle cx="130" cy="160" r="20" fill="url(#pinkRoseGrad)" opacity="0.7"/>
+            <circle cx="130" cy="160" r="16" fill="#D4607A" opacity="0.8"/>
+            <circle cx="130" cy="160" r="12" fill="#C44D68" opacity="0.85"/>
+            <circle cx="130" cy="160" r="8" fill="#B03D58" opacity="0.9"/>
+            <circle cx="130" cy="160" r="4" fill="#9E2D48"/>
           </g>
 
-          <!-- Poppy - middle -->
-          <g class="floral-bloom floral-bloom--poppy floral-bloom--delay1" filter="url(#softBlur2)">
-            <ellipse cx="90" cy="270" rx="28" ry="23" fill="url(#poppyOrangeGrad2)" transform="rotate(10 90 270)"/>
-            <ellipse cx="85" cy="265" rx="25" ry="20" fill="url(#poppyOrangeGrad2)" opacity="0.8"/>
-            <ellipse cx="92" cy="272" rx="22" ry="18" fill="url(#poppyOrangeGrad2)" opacity="0.7"/>
-            <circle cx="88" cy="270" r="7" fill="#3D5C3D" opacity="0.8"/>
-            <circle cx="88" cy="270" r="4" fill="#F5C441"/>
+          <!-- 6. SMALL CORAL PINK POPPY - Top -->
+          <g class="floral-bloom floral-bloom--delay4">
+            <ellipse cx="45" cy="35" rx="22" ry="18" fill="url(#coralPoppyGrad)" transform="rotate(-15 45 35)"/>
+            <ellipse cx="40" cy="30" rx="20" ry="16" fill="#E07A85" opacity="0.9"/>
+            <ellipse cx="43" cy="33" rx="16" ry="13" fill="#D4607A" opacity="0.85"/>
+            <circle cx="42" cy="34" r="5" fill="#2D3D2D" opacity="0.7"/>
+            <circle cx="40" cy="32" r="1.5" fill="#F5C441"/>
+            <circle cx="44" cy="33" r="1.5" fill="#F5C441"/>
           </g>
 
-          <!-- Rose - upper -->
-          <g class="floral-bloom floral-bloom--rose floral-bloom--delay2">
-            <circle cx="85" cy="150" r="20" fill="url(#roseGrad2)" opacity="0.5"/>
-            <circle cx="85" cy="150" r="16" fill="url(#roseGrad2)" opacity="0.6"/>
-            <circle cx="85" cy="150" r="12" fill="url(#roseGrad2)" opacity="0.7"/>
-            <circle cx="85" cy="150" r="8" fill="url(#roseGrad2)" opacity="0.8"/>
-            <circle cx="85" cy="150" r="4" fill="#D4567A"/>
+          <!-- 7. SMALL PINK COSMOS - Near top -->
+          <g class="floral-bloom floral-bloom--delay4">
+            <ellipse cx="85" cy="85" rx="18" ry="7" fill="url(#coralPoppyGrad)" transform="rotate(0 85 85)"/>
+            <ellipse cx="85" cy="85" rx="18" ry="7" fill="url(#coralPoppyGrad)" transform="rotate(45 85 85)"/>
+            <ellipse cx="85" cy="85" rx="18" ry="7" fill="url(#coralPoppyGrad)" transform="rotate(90 85 85)"/>
+            <ellipse cx="85" cy="85" rx="18" ry="7" fill="url(#coralPoppyGrad)" transform="rotate(135 85 85)"/>
+            <circle cx="85" cy="85" r="5" fill="#F5C441"/>
           </g>
 
-          <!-- Small poppy - top -->
-          <g class="floral-bloom floral-bloom--poppy floral-bloom--delay3">
-            <ellipse cx="62" cy="55" rx="18" ry="15" fill="url(#poppyOrangeGrad2)"/>
-            <ellipse cx="60" cy="52" rx="15" ry="12" fill="url(#poppyOrangeGrad2)" opacity="0.8"/>
-            <circle cx="61" cy="54" r="5" fill="#3D5C3D" opacity="0.7"/>
-            <circle cx="61" cy="54" r="3" fill="#F5C441"/>
+          <!-- === SMALL ACCENT FLOWERS === -->
+
+          <!-- Orange marigolds -->
+          <g class="floral-bloom floral-bloom--accent">
+            <circle cx="60" cy="580" r="12" fill="#F5A052" opacity="0.85"/>
+            <circle cx="60" cy="580" r="8" fill="#E8943A" opacity="0.9"/>
+            <circle cx="60" cy="580" r="4" fill="#D47820"/>
+          </g>
+          <g class="floral-bloom floral-bloom--accent floral-bloom--delay1">
+            <circle cx="75" cy="420" r="10" fill="#F5A052" opacity="0.8"/>
+            <circle cx="75" cy="420" r="6" fill="#E8943A" opacity="0.85"/>
+            <circle cx="75" cy="420" r="3" fill="#D47820"/>
+          </g>
+          <g class="floral-bloom floral-bloom--accent floral-bloom--delay2">
+            <circle cx="110" cy="310" r="8" fill="#F5A052" opacity="0.75"/>
+            <circle cx="110" cy="310" r="5" fill="#E8943A"/>
           </g>
 
-          <!-- Marigold accents -->
-          <circle class="floral-bloom floral-bloom--accent" cx="50" cy="420" r="9" fill="#F5A052" opacity="0.7"/>
-          <circle class="floral-bloom floral-bloom--accent floral-bloom--delay1" cx="35" cy="310" r="7" fill="#F5A052" opacity="0.6"/>
+          <!-- Purple/magenta bud spike -->
+          <g class="floral-bloom floral-bloom--bud">
+            <ellipse cx="95" cy="180" rx="4" ry="10" fill="#9E4B6C" opacity="0.85"/>
+            <ellipse cx="92" cy="195" rx="3.5" ry="9" fill="#9E4B6C" opacity="0.8"/>
+            <ellipse cx="98" cy="208" rx="3" ry="8" fill="#9E4B6C" opacity="0.75"/>
+            <ellipse cx="94" cy="220" rx="2.5" ry="7" fill="#9E4B6C" opacity="0.7"/>
+            <ellipse cx="97" cy="230" rx="2" ry="6" fill="#9E4B6C" opacity="0.65"/>
+          </g>
 
-          <!-- Purple buds -->
-          <ellipse class="floral-bloom floral-bloom--bud" cx="42" cy="190" rx="4" ry="8" fill="#9E4B6C" opacity="0.7"/>
-          <ellipse class="floral-bloom floral-bloom--bud floral-bloom--delay1" cx="38" cy="205" rx="3" ry="6" fill="#9E4B6C" opacity="0.6"/>
+          <!-- Small pink buds -->
+          <ellipse class="floral-bloom floral-bloom--bud floral-bloom--delay1" cx="50" cy="480" rx="5" ry="10" fill="#D4607A" opacity="0.7" transform="rotate(-20 50 480)"/>
+          <ellipse class="floral-bloom floral-bloom--bud floral-bloom--delay2" cx="80" cy="130" rx="4" ry="8" fill="#E07A85" opacity="0.65" transform="rotate(15 80 130)"/>
+
+          <!-- Tiny yellow buttercup -->
+          <g class="floral-bloom floral-bloom--accent floral-bloom--delay3">
+            <ellipse cx="115" cy="125" rx="8" ry="6" fill="#F5C441" opacity="0.85"/>
+            <ellipse cx="115" cy="125" rx="8" ry="6" fill="#F5C441" opacity="0.85" transform="rotate(72 115 125)"/>
+            <ellipse cx="115" cy="125" rx="8" ry="6" fill="#F5C441" opacity="0.85" transform="rotate(144 115 125)"/>
+            <ellipse cx="115" cy="125" rx="8" ry="6" fill="#F5C441" opacity="0.85" transform="rotate(216 115 125)"/>
+            <ellipse cx="115" cy="125" rx="8" ry="6" fill="#F5C441" opacity="0.85" transform="rotate(288 115 125)"/>
+            <circle cx="115" cy="125" r="3" fill="#D4A820"/>
+          </g>
+
         </svg>
       </div>
 

@@ -380,20 +380,135 @@ h1, h2, h3, h4 {
 
 .scroll-text {
   font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-text-muted);
+  margin-top: var(--space-xs);
 }
 
-.scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(
-    to bottom,
-    var(--color-pink),
-    transparent
-  );
-  animation: scrollPulse 2s var(--ease-in-out) infinite;
+.scroll-arrow {
+  width: 20px;
+  height: 20px;
+  color: var(--color-pink);
+  animation: bounceDown 2s var(--ease-in-out) infinite;
+}
+
+.scroll-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Hero Decorations - Leaf SVGs */
+.hero__decor {
+  position: absolute;
+  width: clamp(120px, 20vw, 200px);
+  height: clamp(120px, 20vw, 200px);
+  color: var(--color-green);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero__decor--top-left {
+  top: 0;
+  left: 0;
+  opacity: 0;
+  animation: slideInLeft var(--duration-slow) var(--ease-out) 1.4s forwards;
+}
+
+.hero__decor--top-right {
+  top: 0;
+  right: 0;
+  opacity: 0;
+  animation: slideInRight var(--duration-slow) var(--ease-out) 1.5s forwards;
+}
+
+.hero__decor--bottom-left {
+  bottom: 80px;
+  left: 0;
+  opacity: 0;
+  animation: slideInLeft var(--duration-slow) var(--ease-out) 1.6s forwards;
+}
+
+.hero__decor--bottom-right {
+  bottom: 80px;
+  right: 0;
+  opacity: 0;
+  animation: slideInRight var(--duration-slow) var(--ease-out) 1.7s forwards;
+}
+
+.leaf-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.leaf {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: drawLeaf 2s var(--ease-out) forwards;
+}
+
+.leaf--2 {
+  animation-delay: 0.3s;
+}
+
+.leaf--3 {
+  animation-delay: 0.5s;
+}
+
+.hero__decor--top-left .leaf,
+.hero__decor--bottom-left .leaf {
+  animation-delay: 1.6s;
+}
+
+.hero__decor--top-left .leaf--2,
+.hero__decor--bottom-left .leaf--2 {
+  animation-delay: 1.9s;
+}
+
+.hero__decor--top-left .leaf--3,
+.hero__decor--bottom-left .leaf--3 {
+  animation-delay: 2.1s;
+}
+
+.hero__decor--top-right .leaf,
+.hero__decor--bottom-right .leaf {
+  animation-delay: 1.7s;
+}
+
+.hero__decor--top-right .leaf--2,
+.hero__decor--bottom-right .leaf--2 {
+  animation-delay: 2s;
+}
+
+.hero__decor--top-right .leaf--3,
+.hero__decor--bottom-right .leaf--3 {
+  animation-delay: 2.2s;
+}
+
+/* Lotus SVG - Scroll Indicator */
+.lotus-svg {
+  width: 50px;
+  height: 35px;
+  color: var(--color-pink);
+  animation: lotusPulse 3s var(--ease-in-out) infinite;
+}
+
+.lotus-petal {
+  transform-origin: center bottom;
+}
+
+.lotus-petal--center {
+  animation: petalBloom 3s var(--ease-in-out) infinite;
+}
+
+.lotus-petal--left-1,
+.lotus-petal--right-1 {
+  animation: petalSway 4s var(--ease-in-out) infinite;
+}
+
+.lotus-petal--left-2,
+.lotus-petal--right-2 {
+  animation: petalSway 4s var(--ease-in-out) 0.5s infinite;
 }
 
 /* ================================
@@ -883,6 +998,75 @@ details[open] .accordion__header::after {
   }
 }
 
+@keyframes bounceDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 0.6;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 0.6;
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawLeaf {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes lotusPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes petalBloom {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.05);
+  }
+}
+
+@keyframes petalSway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(2deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+}
+
 /* Scroll-triggered animation classes */
 .animate-on-scroll {
   opacity: 0;
@@ -938,6 +1122,16 @@ details[open] .accordion__header::after {
     bottom: var(--space-md);
     right: var(--space-md);
   }
+
+  .hero__decor {
+    width: 100px;
+    height: 100px;
+  }
+
+  .hero__decor--bottom-left,
+  .hero__decor--bottom-right {
+    bottom: 100px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -951,6 +1145,22 @@ details[open] .accordion__header::after {
 
   .events__grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero__decor {
+    width: 80px;
+    height: 80px;
+    opacity: 0.4;
+  }
+
+  .hero__decor--bottom-left,
+  .hero__decor--bottom-right {
+    display: none;
+  }
+
+  .lotus-svg {
+    width: 40px;
+    height: 28px;
   }
 }
 
@@ -977,6 +1187,22 @@ details[open] .accordion__header::after {
   .hero__details,
   .hero__scroll-indicator {
     opacity: 1;
+    animation: none;
+  }
+
+  .hero__decor {
+    opacity: 0.5;
+    animation: none;
+  }
+
+  .leaf {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .lotus-svg,
+  .lotus-petal,
+  .scroll-arrow {
     animation: none;
   }
 

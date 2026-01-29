@@ -50,6 +50,41 @@
 
     <!-- Hero Section -->
     <section id="home" class="section section--hero">
+      <!-- Decorative Leaves - Top Left -->
+      <div class="hero__decor hero__decor--top-left" aria-hidden="true">
+        <svg class="leaf-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="leaf" d="M20,180 Q60,140 40,80 Q30,40 60,20 Q90,40 80,80 Q60,140 100,180" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path class="leaf leaf--2" d="M60,190 Q90,150 70,100 Q65,70 85,50 Q110,70 100,100 Q85,150 120,190" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path class="leaf leaf--3" d="M5,140 Q30,110 20,70 Q15,45 35,30 Q55,45 45,70 Q35,110 60,140" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- Decorative Leaves - Top Right -->
+      <div class="hero__decor hero__decor--top-right" aria-hidden="true">
+        <svg class="leaf-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="leaf" d="M180,180 Q140,140 160,80 Q170,40 140,20 Q110,40 120,80 Q140,140 100,180" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path class="leaf leaf--2" d="M140,190 Q110,150 130,100 Q135,70 115,50 Q90,70 100,100 Q115,150 80,190" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path class="leaf leaf--3" d="M195,140 Q170,110 180,70 Q185,45 165,30 Q145,45 155,70 Q165,110 140,140" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- Decorative Leaves - Bottom Left -->
+      <div class="hero__decor hero__decor--bottom-left" aria-hidden="true">
+        <svg class="leaf-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="leaf" d="M20,20 Q60,60 40,120 Q30,160 60,180 Q90,160 80,120 Q60,60 100,20" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path class="leaf leaf--2" d="M60,10 Q90,50 70,100 Q65,130 85,150 Q110,130 100,100 Q85,50 120,10" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- Decorative Leaves - Bottom Right -->
+      <div class="hero__decor hero__decor--bottom-right" aria-hidden="true">
+        <svg class="leaf-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="leaf" d="M180,20 Q140,60 160,120 Q170,160 140,180 Q110,160 120,120 Q140,60 100,20" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path class="leaf leaf--2" d="M140,10 Q110,50 130,100 Q135,130 115,150 Q90,130 100,100 Q115,50 80,10" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- Main Content -->
       <div class="hero__content">
         <p class="hero__prelude">Together with their families</p>
         <h1 class="hero__names">
@@ -63,9 +98,25 @@
           <p class="hero__venue">Taj Ambad, Nashik</p>
         </div>
       </div>
+
+      <!-- Lotus Scroll Indicator -->
       <div class="hero__scroll-indicator" aria-hidden="true">
-        <span class="scroll-text">Scroll</span>
-        <div class="scroll-line"></div>
+        <svg class="lotus-svg" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Center petal -->
+          <path class="lotus-petal lotus-petal--center" d="M30,35 Q30,20 30,8 Q35,15 38,25 Q35,32 30,35 Q25,32 22,25 Q25,15 30,8" fill="currentColor" opacity="0.9"/>
+          <!-- Left petals -->
+          <path class="lotus-petal lotus-petal--left-1" d="M30,35 Q22,28 15,22 Q18,15 25,12 Q28,20 30,35" fill="currentColor" opacity="0.7"/>
+          <path class="lotus-petal lotus-petal--left-2" d="M30,35 Q18,30 8,28 Q10,20 18,15 Q22,25 30,35" fill="currentColor" opacity="0.5"/>
+          <!-- Right petals -->
+          <path class="lotus-petal lotus-petal--right-1" d="M30,35 Q38,28 45,22 Q42,15 35,12 Q32,20 30,35" fill="currentColor" opacity="0.7"/>
+          <path class="lotus-petal lotus-petal--right-2" d="M30,35 Q42,30 52,28 Q50,20 42,15 Q38,25 30,35" fill="currentColor" opacity="0.5"/>
+        </svg>
+        <span class="scroll-text">Scroll to explore</span>
+        <div class="scroll-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </div>
       </div>
     </section>
 

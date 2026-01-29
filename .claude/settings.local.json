@@ -5,7 +5,10 @@
       "Bash(git commit:*)",
       "Bash(powershell -Command:*)",
       "Bash(git push:*)",
-      "Bash(gh repo view:*)"
+      "Bash(gh repo view:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)",
+      "Bash(git remote:*)"
     ]
   }
 }

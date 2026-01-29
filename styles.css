@@ -1432,7 +1432,8 @@ details[open] .accordion__header::after {
   .hero__ampersand,
   .hero__tagline,
   .hero__details,
-  .hero__scroll-indicator {
+  .hero__scroll-indicator,
+  .hero__countdown {
     opacity: 1;
     animation: none;
   }
@@ -1449,13 +1450,23 @@ details[open] .accordion__header::after {
 
   .lotus-svg,
   .lotus-petal,
-  .scroll-arrow {
+  .scroll-arrow,
+  .confetti span,
+  .success-icon {
     animation: none;
+  }
+
+  .confetti {
+    display: none;
   }
 
   .animate-on-scroll {
     opacity: 1;
     transform: none;
+  }
+
+  .scroll-top {
+    transition: none;
   }
 }
 

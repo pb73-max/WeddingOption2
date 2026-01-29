@@ -35,7 +35,18 @@ git reset --hard 82cd5c4
 ---
 
 ## Phase 2: Hero Section - Restore Point
-*To be added after Phase 2 completion*
+
+### Git Commit Hash
+`98d97ac` - [2-3] Add botanical border to footer
+
+### Rollback Instructions
+```bash
+git reset --hard 98d97ac
+```
+
+### Files State at This Point
+- index.html: Hero with leaf SVGs, lotus scroll indicator, section dividers, Mughal arch event cards, footer with botanical border
+- styles.css: All decoration styles, animations for leaves and lotus, responsive adjustments
 
 ---
 

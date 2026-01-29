@@ -103,6 +103,25 @@
           <p class="hero__date">April 23 – 24, 2026</p>
           <p class="hero__venue">Taj Ambad, Nashik</p>
         </div>
+        <!-- Countdown Timer -->
+        <div class="hero__countdown" id="countdown" aria-live="polite" aria-label="Countdown to wedding">
+          <div class="countdown__item">
+            <span class="countdown__number" id="countdown-days">--</span>
+            <span class="countdown__label">Days</span>
+          </div>
+          <div class="countdown__item">
+            <span class="countdown__number" id="countdown-hours">--</span>
+            <span class="countdown__label">Hours</span>
+          </div>
+          <div class="countdown__item">
+            <span class="countdown__number" id="countdown-minutes">--</span>
+            <span class="countdown__label">Minutes</span>
+          </div>
+          <div class="countdown__item">
+            <span class="countdown__number" id="countdown-seconds">--</span>
+            <span class="countdown__label">Seconds</span>
+          </div>
+        </div>
       </div>
 
       <!-- Lotus Scroll Indicator -->
@@ -390,6 +409,13 @@
       <p class="footer__tagline">Made with love</p>
     </div>
   </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scroll-top" class="scroll-top" aria-label="Scroll to top" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
 
   <!-- Toast Notification -->
   <div id="toast" class="toast" role="alert" aria-live="polite" hidden></div>

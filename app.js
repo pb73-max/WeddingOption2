@@ -14,6 +14,9 @@
 
   const SECTIONS = ['home', 'events', 'rsvp', 'travel'];
 
+  // Wedding date: April 23, 2026 at noon (first event)
+  const WEDDING_DATE = new Date('2026-04-23T12:00:00').getTime();
+
   // ================================
   // State
   // ================================
@@ -22,7 +25,8 @@
     audioContext: null,
     lastScrollY: 0,
     currentSection: 'home',
-    helpBuffer: ''
+    helpBuffer: '',
+    countdownInterval: null
   };
 
   // ================================
@@ -34,10 +38,17 @@
     navList: null,
     navLinks: null,
     soundToggle: null,
+    scrollTopBtn: null,
     toast: null,
     rsvpForm: null,
     rsvpSuccess: null,
-    sections: null
+    sections: null,
+    countdown: {
+      days: null,
+      hours: null,
+      minutes: null,
+      seconds: null
+    }
   };
 
   // ================================
@@ -148,6 +159,62 @@
   }
 
   // ================================
+  // Countdown Timer
+  // ================================
+  function updateCountdown() {
+    const now = Date.now();
+    const distance = WEDDING_DATE - now;
+
+    if (distance < 0) {
+      // Wedding has started/passed
+      if (elements.countdown.days) {
+        elements.countdown.days.textContent = '0';
+        elements.countdown.hours.textContent = '0';
+        elements.countdown.minutes.textContent = '0';
+        elements.countdown.seconds.textContent = '0';
+      }
+      if (state.countdownInterval) {
+        clearInterval(state.countdownInterval);
+      }
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    if (elements.countdown.days) {
+      elements.countdown.days.textContent = days;
+      elements.countdown.hours.textContent = hours;
+      elements.countdown.minutes.textContent = minutes;
+      elements.countdown.seconds.textContent = seconds;
+    }
+  }
+
+  function startCountdown() {
+    updateCountdown();
+    state.countdownInterval = setInterval(updateCountdown, 1000);
+  }
+
+  // ================================
+  // Scroll to Top
+  // ================================
+  function handleScrollTopVisibility() {
+    if (window.scrollY > 500) {
+      elements.scrollTopBtn.classList.add('visible');
+      elements.scrollTopBtn.hidden = false;
+    } else {
+      elements.scrollTopBtn.classList.remove('visible');
+    }
+  }
+
+  function scrollToTop() {
+    playSound('click');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ================================
   // Navigation
   // ================================
   function handleScroll() {
@@ -165,6 +232,9 @@
       elements.nav.classList.remove('nav--scrolled');
       elements.nav.classList.remove('nav--hidden');
     }
+
+    // Scroll to top button visibility
+    handleScrollTopVisibility();
 
     state.lastScrollY = scrollY;
   }
@@ -426,6 +496,11 @@
     // Keyboard shortcuts
     document.addEventListener('keydown', handleKeyboard);
 
+    // Scroll to top button
+    if (elements.scrollTopBtn) {
+      elements.scrollTopBtn.addEventListener('click', scrollToTop);
+    }
+
     // Initialize audio on any user interaction (for browsers that require it)
     document.addEventListener('click', () => {
       if (state.soundEnabled && !state.audioContext) {
@@ -444,10 +519,17 @@
     elements.navList = document.getElementById('nav-menu');
     elements.navLinks = document.querySelectorAll('.nav__link');
     elements.soundToggle = document.getElementById('sound-toggle');
+    elements.scrollTopBtn = document.getElementById('scroll-top');
     elements.toast = document.getElementById('toast');
     elements.rsvpForm = document.getElementById('rsvp-form');
     elements.rsvpSuccess = document.getElementById('rsvp-success');
     elements.sections = document.querySelectorAll('.section');
+
+    // Cache countdown elements
+    elements.countdown.days = document.getElementById('countdown-days');
+    elements.countdown.hours = document.getElementById('countdown-hours');
+    elements.countdown.minutes = document.getElementById('countdown-minutes');
+    elements.countdown.seconds = document.getElementById('countdown-seconds');
 
     // Load saved preferences
     const savedSound = loadFromStorage(STORAGE_KEYS.SOUND, false);
@@ -464,6 +546,9 @@
 
     // Bind events
     bindEvents();
+
+    // Start countdown timer
+    startCountdown();
 
     // Mark elements for scroll animation
     document.querySelectorAll('.event-card, .travel-card, .welcome__message').forEach((el, i) => {

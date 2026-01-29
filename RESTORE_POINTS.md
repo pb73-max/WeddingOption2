@@ -67,8 +67,20 @@ git reset --hard 8dda0a2
 
 ---
 
-## Phase 4: Welcome & Events Sections - Restore Point
-*To be added after Phase 4 completion*
+## Phase 4: Polish & Refinements - Restore Point
+
+### Git Commit Hash
+`d65922f` - [4-3] Enhance reduced motion support and update progress
+
+### Rollback Instructions
+```bash
+git reset --hard d65922f
+```
+
+### Files State at This Point
+- index.html: Countdown timer, scroll-to-top button, confetti celebration
+- styles.css: All animations, full accessibility support
+- app.js: Countdown logic, scroll-to-top functionality
 
 ---
 

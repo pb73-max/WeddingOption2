@@ -395,6 +395,9 @@
   // Initialization
   // ================================
   function init() {
+    // Mark that JS is ready - enables CSS animations
+    document.body.classList.add('js-ready');
+
     // Cache DOM elements
     elements.nav = document.querySelector('.nav');
     elements.navToggle = document.getElementById('nav-toggle');

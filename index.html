@@ -29,7 +29,13 @@
 
   <!-- Navigation -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
-    <ul class="nav__list">
+    <div class="nav__brand">P & A</div>
+    <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+      <span class="nav__toggle-line"></span>
+      <span class="nav__toggle-line"></span>
+      <span class="nav__toggle-line"></span>
+    </button>
+    <ul class="nav__list" id="nav-menu">
       <li><a href="#home" class="nav__link active">Home</a></li>
       <li><a href="#events" class="nav__link">Events</a></li>
       <li><a href="#rsvp" class="nav__link">RSVP</a></li>

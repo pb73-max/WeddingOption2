@@ -30,6 +30,8 @@
   // ================================
   const elements = {
     nav: null,
+    navToggle: null,
+    navList: null,
     navLinks: null,
     soundToggle: null,
     toast: null,
@@ -330,7 +332,8 @@
         smoothScrollTo('travel');
         break;
       case 'escape':
-        // Close any modals or reset focus
+        // Close mobile menu or reset focus
+        closeMobileMenu();
         document.activeElement.blur();
         break;
     }
@@ -338,6 +341,33 @@
 
   function showHelpToast() {
     showToast('Shortcuts: H=Home, E=Events, R=RSVP, T=Travel, S=Sound', 4000);
+  }
+
+  // ================================
+  // Mobile Menu
+  // ================================
+  function toggleMobileMenu() {
+    const isOpen = elements.navToggle.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  }
+
+  function openMobileMenu() {
+    elements.navToggle.setAttribute('aria-expanded', 'true');
+    elements.navToggle.setAttribute('aria-label', 'Close menu');
+    elements.navList.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    playSound('click');
+  }
+
+  function closeMobileMenu() {
+    elements.navToggle.setAttribute('aria-expanded', 'false');
+    elements.navToggle.setAttribute('aria-label', 'Open menu');
+    elements.navList.classList.remove('open');
+    document.body.style.overflow = '';
   }
 
   // ================================
@@ -370,11 +400,17 @@
       toggleSound();
     });
 
+    // Mobile menu toggle
+    if (elements.navToggle) {
+      elements.navToggle.addEventListener('click', toggleMobileMenu);
+    }
+
     // Navigation links
     elements.navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href').slice(1);
+        closeMobileMenu(); // Close menu on mobile
         smoothScrollTo(targetId);
       });
     });
@@ -404,6 +440,8 @@
   function init() {
     // Cache DOM elements
     elements.nav = document.querySelector('.nav');
+    elements.navToggle = document.getElementById('nav-toggle');
+    elements.navList = document.getElementById('nav-menu');
     elements.navLinks = document.querySelectorAll('.nav__link');
     elements.soundToggle = document.getElementById('sound-toggle');
     elements.toast = document.getElementById('toast');

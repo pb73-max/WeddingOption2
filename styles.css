@@ -157,6 +157,9 @@ h1, h2, h3, h4 {
   background: rgba(255, 248, 240, 0.95);
   backdrop-filter: blur(10px);
   padding: var(--space-sm) var(--space-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: transform var(--duration-normal) var(--ease-out),
               box-shadow var(--duration-normal);
 }
@@ -167,6 +170,50 @@ h1, h2, h3, h4 {
 
 .nav--scrolled {
   box-shadow: 0 2px 20px rgba(27, 77, 62, 0.1);
+}
+
+.nav__brand {
+  display: none;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-pink);
+  letter-spacing: 0.05em;
+}
+
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.nav__toggle-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-green);
+  border-radius: 2px;
+  transition: all var(--duration-fast);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 .nav__list {
@@ -1127,12 +1174,44 @@ details[open] .accordion__header::after {
    Responsive
    ================================ */
 @media (max-width: 768px) {
+  /* Mobile Navigation */
+  .nav {
+    justify-content: space-between;
+  }
+
+  .nav__brand {
+    display: block;
+  }
+
+  .nav__toggle {
+    display: flex;
+  }
+
   .nav__list {
-    gap: var(--space-sm);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-lg);
+    background: rgba(255, 248, 240, 0.98);
+    backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--duration-normal), visibility var(--duration-normal);
+  }
+
+  .nav__list.open {
+    opacity: 1;
+    visibility: visible;
   }
 
   .nav__link {
-    font-size: 0.75rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
   }
 
   .rsvp__layout {
@@ -1158,6 +1237,10 @@ details[open] .accordion__header::after {
   .hero__decor--bottom-left,
   .hero__decor--bottom-right {
     bottom: 100px;
+  }
+
+  .travel__grid {
+    grid-template-columns: 1fr;
   }
 }
 

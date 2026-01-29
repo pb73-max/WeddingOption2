@@ -921,8 +921,21 @@ details[open] .accordion__header::after {
 .footer {
   background: var(--color-green);
   color: var(--color-cream);
-  padding: var(--space-xl) var(--space-md);
+  padding: 0 var(--space-md) var(--space-xl);
   text-align: center;
+  position: relative;
+}
+
+.footer__border {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: var(--space-lg);
+}
+
+.footer-border-svg {
+  width: 100%;
+  height: 60px;
+  color: var(--color-cream);
 }
 
 .footer__content {

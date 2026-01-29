@@ -39,17 +39,9 @@
       <li><a href="#home" class="nav__link active">Home</a></li>
       <li><a href="#events" class="nav__link">Events</a></li>
       <li><a href="#rsvp" class="nav__link">RSVP</a></li>
-      <li><a href="#travel" class="nav__link">Travel</a></li>
+      <li><a href="travel.html" class="nav__link">Travel</a></li>
     </ul>
   </nav>
-
-  <!-- Controls (Sound Toggle) -->
-  <div class="controls">
-    <button id="sound-toggle" class="control-btn" aria-label="Toggle sound (currently off)" aria-pressed="false">
-      <span class="icon-sound-off">♪</span>
-      <span class="icon-sound-on">♫</span>
-    </button>
-  </div>
 
   <!-- Main Content -->
   <main id="main-content">
@@ -113,14 +105,6 @@
             <span class="countdown__number" id="countdown-hours">--</span>
             <span class="countdown__label">Hours</span>
           </div>
-          <div class="countdown__item">
-            <span class="countdown__number" id="countdown-minutes">--</span>
-            <span class="countdown__label">Minutes</span>
-          </div>
-          <div class="countdown__item">
-            <span class="countdown__number" id="countdown-seconds">--</span>
-            <span class="countdown__label">Seconds</span>
-          </div>
         </div>
       </div>
 
@@ -136,7 +120,6 @@
           <path class="lotus-petal lotus-petal--right-1" d="M30,35 Q38,28 45,22 Q42,15 35,12 Q32,20 30,35" fill="currentColor" opacity="0.7"/>
           <path class="lotus-petal lotus-petal--right-2" d="M30,35 Q42,30 52,28 Q50,20 42,15 Q38,25 30,35" fill="currentColor" opacity="0.5"/>
         </svg>
-        <span class="scroll-text">Scroll to explore</span>
         <div class="scroll-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 5v14M5 12l7 7 7-7"/>
@@ -305,70 +288,6 @@
             <div class="success-icon">✓</div>
             <h3>Thank You!</h3>
             <p>We've received your RSVP and can't wait to celebrate with you.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Travel Section -->
-    <section id="travel" class="section section--travel">
-      <div class="container">
-        <h2 class="section__title">Travel & Stay</h2>
-
-        <div class="travel__grid">
-          <!-- Venue -->
-          <div class="travel-card">
-            <h3 class="travel-card__title">Venue</h3>
-            <p class="travel-card__text">
-              <strong>Taj Ambad</strong><br>
-              Nashik, Maharashtra, India
-            </p>
-            <div class="travel-card__map" id="map">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.5855!2d73.7389!3d19.9997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeb03fffffff%3A0xfffffff!2sTaj%20Sula%2C%20Nashik!5e0!3m2!1sen!2sin"
-                width="100%"
-                height="200"
-                style="border:0; border-radius: 8px;"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Taj Ambad venue location">
-              </iframe>
-            </div>
-          </div>
-
-          <!-- Accommodation -->
-          <div class="travel-card">
-            <h3 class="travel-card__title">Accommodation</h3>
-            <p class="travel-card__text">
-              Rooms have been arranged at Taj Ambad for our guests.
-              Please contact us for room allocation details.
-            </p>
-          </div>
-
-          <!-- Getting There -->
-          <div class="travel-card">
-            <h3 class="travel-card__title">Getting There</h3>
-            <div class="accordion" id="travel-accordion">
-              <details class="accordion__item">
-                <summary class="accordion__header">By Air</summary>
-                <div class="accordion__content">
-                  <p>The nearest airport is Mumbai (BOM), approximately 3 hours drive. Nashik also has a small airport with limited connectivity.</p>
-                </div>
-              </details>
-              <details class="accordion__item">
-                <summary class="accordion__header">By Train</summary>
-                <div class="accordion__content">
-                  <p>Nashik Road Railway Station is well connected to major cities. The venue is about 30 minutes from the station.</p>
-                </div>
-              </details>
-              <details class="accordion__item">
-                <summary class="accordion__header">By Road</summary>
-                <div class="accordion__content">
-                  <p>Nashik is well connected via NH-3 (Mumbai-Agra Highway). The venue is easily accessible from the city center.</p>
-                </div>
-              </details>
-            </div>
           </div>
         </div>
       </div>

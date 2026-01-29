@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 
   <!-- Inline styles for botanical floral arrangements -->
   <style>
@@ -140,11 +140,125 @@
     @media (prefers-reduced-motion: reduce) {
       .floral-stem,
       .floral-leaf,
-      .floral-bloom {
+      .floral-bloom,
+      .divider-stem,
+      .divider-bloom {
         animation: none;
         opacity: 1;
         stroke-dashoffset: 0;
         transform: none;
+      }
+    }
+
+    /* ================================
+       Floral Section Dividers
+       ================================ */
+    .floral-divider {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto var(--space-lg, 2rem);
+    }
+    .floral-divider svg {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Divider stem animation */
+    .divider-stem {
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      animation: drawStem 1.5s ease-out forwards;
+    }
+    .divider-stem--delay {
+      animation-delay: 0.3s;
+    }
+
+    /* Divider bloom animation */
+    .divider-bloom {
+      opacity: 0;
+      transform-origin: center;
+      animation: bloomIn 0.8s ease-out forwards;
+      animation-delay: 1s;
+    }
+    .divider-bloom--delay1 { animation-delay: 1.2s; }
+    .divider-bloom--delay2 { animation-delay: 1.4s; }
+
+    /* ================================
+       Event Card Florals
+       ================================ */
+    .event-card {
+      position: relative;
+    }
+    .event-card__floral {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 60px;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .event-card__floral--right {
+      left: auto;
+      right: 0;
+      transform: scaleX(-1);
+    }
+
+    /* ================================
+       RSVP Floral Arrangement
+       ================================ */
+    .rsvp-floral {
+      position: absolute;
+      right: 0;
+      top: 10%;
+      height: 80%;
+      width: 120px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .rsvp-floral svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ================================
+       Footer Garland
+       ================================ */
+    .footer__garland {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: var(--space-md, 1rem);
+    }
+    .footer__garland svg {
+      width: 100%;
+      height: 80px;
+      min-width: 800px;
+    }
+
+    /* ================================
+       Responsive Adjustments
+       ================================ */
+    @media (max-width: 768px) {
+      .rsvp-floral {
+        width: 80px;
+        opacity: 0.6;
+      }
+      .event-card__floral {
+        width: 45px;
+        height: 45px;
+        opacity: 0.8;
+      }
+      .floral-divider {
+        max-width: 280px;
+      }
+    }
+    @media (max-width: 480px) {
+      .rsvp-floral {
+        display: none;
+      }
+      .event-card__floral {
+        width: 35px;
+        height: 35px;
       }
     }
   </style>
@@ -444,14 +558,41 @@
     <!-- Welcome Section -->
     <section id="welcome" class="section section--welcome">
       <div class="container">
-        <!-- Decorative Divider -->
-        <div class="section-divider" aria-hidden="true">
-          <svg class="divider-svg" viewBox="0 0 200 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path class="divider-line" d="M0,15 L70,15" stroke="currentColor" stroke-width="1"/>
-            <circle class="divider-dot" cx="85" cy="15" r="2" fill="currentColor"/>
-            <path class="divider-lotus" d="M100,8 Q100,15 100,22 M95,12 Q100,18 105,12 M90,15 Q100,20 110,15" stroke="currentColor" stroke-width="1.5" fill="none"/>
-            <circle class="divider-dot" cx="115" cy="15" r="2" fill="currentColor"/>
-            <path class="divider-line" d="M130,15 L200,15" stroke="currentColor" stroke-width="1"/>
+        <!-- Floral Section Divider -->
+        <div class="floral-divider" aria-hidden="true">
+          <svg viewBox="0 0 400 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Left branch -->
+            <path class="divider-stem" d="M0,40 Q50,35 100,40 Q130,42 160,40" stroke="#8FA888" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Right branch -->
+            <path class="divider-stem divider-stem--delay" d="M400,40 Q350,35 300,40 Q270,42 240,40" stroke="#8FA888" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Left leaves -->
+            <ellipse cx="60" cy="38" rx="8" ry="14" fill="#6B8E6B" opacity="0.7" transform="rotate(-30 60 38)"/>
+            <ellipse cx="110" cy="42" rx="6" ry="12" fill="#6B8E6B" opacity="0.6" transform="rotate(20 110 42)"/>
+            <!-- Right leaves -->
+            <ellipse cx="340" cy="38" rx="8" ry="14" fill="#6B8E6B" opacity="0.7" transform="rotate(30 340 38)"/>
+            <ellipse cx="290" cy="42" rx="6" ry="12" fill="#6B8E6B" opacity="0.6" transform="rotate(-20 290 42)"/>
+            <!-- Center cosmos flower -->
+            <g class="divider-bloom">
+              <ellipse cx="200" cy="40" rx="18" ry="7" fill="#E8707A" opacity="0.85"/>
+              <ellipse cx="200" cy="40" rx="18" ry="7" fill="#E8707A" opacity="0.85" transform="rotate(45 200 40)"/>
+              <ellipse cx="200" cy="40" rx="18" ry="7" fill="#E8707A" opacity="0.85" transform="rotate(90 200 40)"/>
+              <ellipse cx="200" cy="40" rx="18" ry="7" fill="#E8707A" opacity="0.85" transform="rotate(135 200 40)"/>
+              <circle cx="200" cy="40" r="5" fill="#F5C441"/>
+            </g>
+            <!-- Left small poppy -->
+            <g class="divider-bloom divider-bloom--delay1">
+              <ellipse cx="150" cy="38" rx="12" ry="10" fill="#E86A3A" opacity="0.8"/>
+              <ellipse cx="148" cy="36" rx="10" ry="8" fill="#E86A3A" opacity="0.7"/>
+              <circle cx="149" cy="37" r="4" fill="#3D5C3D" opacity="0.6"/>
+              <circle cx="149" cy="37" r="2" fill="#F5C441"/>
+            </g>
+            <!-- Right small poppy -->
+            <g class="divider-bloom divider-bloom--delay2">
+              <ellipse cx="250" cy="38" rx="12" ry="10" fill="#E86A3A" opacity="0.8"/>
+              <ellipse cx="252" cy="36" rx="10" ry="8" fill="#E86A3A" opacity="0.7"/>
+              <circle cx="251" cy="37" r="4" fill="#3D5C3D" opacity="0.6"/>
+              <circle cx="251" cy="37" r="2" fill="#F5C441"/>
+            </g>
           </svg>
         </div>
         <h2 class="section__title">Welcome</h2>
@@ -484,14 +625,35 @@
         </svg>
       </div>
       <div class="container">
-        <!-- Decorative Divider -->
-        <div class="section-divider" aria-hidden="true">
-          <svg class="divider-svg" viewBox="0 0 200 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path class="divider-line" d="M0,15 L70,15" stroke="currentColor" stroke-width="1"/>
-            <circle class="divider-dot" cx="85" cy="15" r="2" fill="currentColor"/>
-            <path class="divider-lotus" d="M100,8 Q100,15 100,22 M95,12 Q100,18 105,12 M90,15 Q100,20 110,15" stroke="currentColor" stroke-width="1.5" fill="none"/>
-            <circle class="divider-dot" cx="115" cy="15" r="2" fill="currentColor"/>
-            <path class="divider-line" d="M130,15 L200,15" stroke="currentColor" stroke-width="1"/>
+        <!-- Floral Section Divider -->
+        <div class="floral-divider" aria-hidden="true">
+          <svg viewBox="0 0 400 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="divider-stem" d="M0,40 Q50,35 100,40 Q130,42 160,40" stroke="#8FA888" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path class="divider-stem divider-stem--delay" d="M400,40 Q350,35 300,40 Q270,42 240,40" stroke="#8FA888" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <ellipse cx="60" cy="38" rx="8" ry="14" fill="#6B8E6B" opacity="0.7" transform="rotate(-30 60 38)"/>
+            <ellipse cx="110" cy="42" rx="6" ry="12" fill="#6B8E6B" opacity="0.6" transform="rotate(20 110 42)"/>
+            <ellipse cx="340" cy="38" rx="8" ry="14" fill="#6B8E6B" opacity="0.7" transform="rotate(30 340 38)"/>
+            <ellipse cx="290" cy="42" rx="6" ry="12" fill="#6B8E6B" opacity="0.6" transform="rotate(-20 290 42)"/>
+            <!-- Center rose -->
+            <g class="divider-bloom">
+              <circle cx="200" cy="40" r="16" fill="#D4567A" opacity="0.5"/>
+              <circle cx="200" cy="40" r="12" fill="#D4567A" opacity="0.6"/>
+              <circle cx="200" cy="40" r="8" fill="#D4567A" opacity="0.8"/>
+              <circle cx="200" cy="40" r="4" fill="#D4567A"/>
+            </g>
+            <!-- Cosmos flowers -->
+            <g class="divider-bloom divider-bloom--delay1">
+              <ellipse cx="155" cy="40" rx="14" ry="5" fill="#E8707A" opacity="0.8"/>
+              <ellipse cx="155" cy="40" rx="14" ry="5" fill="#E8707A" opacity="0.8" transform="rotate(60 155 40)"/>
+              <ellipse cx="155" cy="40" rx="14" ry="5" fill="#E8707A" opacity="0.8" transform="rotate(120 155 40)"/>
+              <circle cx="155" cy="40" r="4" fill="#F5C441"/>
+            </g>
+            <g class="divider-bloom divider-bloom--delay2">
+              <ellipse cx="245" cy="40" rx="14" ry="5" fill="#E8707A" opacity="0.8"/>
+              <ellipse cx="245" cy="40" rx="14" ry="5" fill="#E8707A" opacity="0.8" transform="rotate(60 245 40)"/>
+              <ellipse cx="245" cy="40" rx="14" ry="5" fill="#E8707A" opacity="0.8" transform="rotate(120 245 40)"/>
+              <circle cx="245" cy="40" r="4" fill="#F5C441"/>
+            </g>
           </svg>
         </div>
         <h2 class="section__title">Celebrations</h2>
@@ -502,9 +664,16 @@
           <div class="events__grid">
 
             <article class="event-card event-card--green">
-              <svg class="event-card__arch-svg" viewBox="0 0 120 60" fill="none" aria-hidden="true">
-                <path d="M10,60 L10,30 Q10,10 60,10 Q110,10 110,30 L110,60" stroke="currentColor" stroke-width="2" fill="none"/>
-                <path d="M20,60 L20,35 Q20,20 60,20 Q100,20 100,35 L100,60" stroke="currentColor" stroke-width="1" opacity="0.5" fill="none"/>
+              <!-- Floral corner accent -->
+              <svg class="event-card__floral" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+                <path d="M0,60 Q10,40 15,25 Q18,15 25,10" stroke="#8FA888" stroke-width="1.5" fill="none"/>
+                <ellipse cx="8" cy="45" rx="5" ry="9" fill="#6B8E6B" opacity="0.6" transform="rotate(-40 8 45)"/>
+                <ellipse cx="18" cy="22" rx="4" ry="7" fill="#6B8E6B" opacity="0.5" transform="rotate(30 18 22)"/>
+                <!-- Small poppy -->
+                <ellipse cx="28" cy="12" rx="10" ry="8" fill="#E86A3A" opacity="0.85"/>
+                <ellipse cx="26" cy="10" rx="8" ry="6" fill="#F5A052" opacity="0.7"/>
+                <circle cx="27" cy="11" r="3" fill="#3D5C3D" opacity="0.7"/>
+                <circle cx="27" cy="11" r="1.5" fill="#F5C441"/>
               </svg>
               <div class="event-card__content">
                 <h4 class="event-card__name">Bhaat, Matki Pooja & Mehendi</h4>
@@ -514,9 +683,16 @@
             </article>
 
             <article class="event-card event-card--coral">
-              <svg class="event-card__arch-svg" viewBox="0 0 120 60" fill="none" aria-hidden="true">
-                <path d="M10,60 L10,30 Q10,10 60,10 Q110,10 110,30 L110,60" stroke="currentColor" stroke-width="2" fill="none"/>
-                <path d="M20,60 L20,35 Q20,20 60,20 Q100,20 100,35 L100,60" stroke="currentColor" stroke-width="1" opacity="0.5" fill="none"/>
+              <!-- Floral corner accent - cosmos -->
+              <svg class="event-card__floral event-card__floral--right" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+                <path d="M60,60 Q50,40 45,25 Q42,15 35,10" stroke="#8FA888" stroke-width="1.5" fill="none"/>
+                <ellipse cx="52" cy="45" rx="5" ry="9" fill="#6B8E6B" opacity="0.6" transform="rotate(40 52 45)"/>
+                <ellipse cx="42" cy="22" rx="4" ry="7" fill="#6B8E6B" opacity="0.5" transform="rotate(-30 42 22)"/>
+                <!-- Cosmos flower -->
+                <ellipse cx="33" cy="12" rx="10" ry="4" fill="#E8707A" opacity="0.85"/>
+                <ellipse cx="33" cy="12" rx="10" ry="4" fill="#E8707A" opacity="0.85" transform="rotate(60 33 12)"/>
+                <ellipse cx="33" cy="12" rx="10" ry="4" fill="#E8707A" opacity="0.85" transform="rotate(120 33 12)"/>
+                <circle cx="33" cy="12" r="3" fill="#F5C441"/>
               </svg>
               <div class="event-card__content">
                 <h4 class="event-card__name">Engagement Party</h4>
@@ -534,9 +710,13 @@
           <div class="events__grid">
 
             <article class="event-card event-card--orange">
-              <svg class="event-card__arch-svg" viewBox="0 0 120 60" fill="none" aria-hidden="true">
-                <path d="M10,60 L10,30 Q10,10 60,10 Q110,10 110,30 L110,60" stroke="currentColor" stroke-width="2" fill="none"/>
-                <path d="M20,60 L20,35 Q20,20 60,20 Q100,20 100,35 L100,60" stroke="currentColor" stroke-width="1" opacity="0.5" fill="none"/>
+              <svg class="event-card__floral" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+                <path d="M0,60 Q10,40 15,25 Q18,15 25,10" stroke="#8FA888" stroke-width="1.5" fill="none"/>
+                <ellipse cx="8" cy="45" rx="5" ry="9" fill="#6B8E6B" opacity="0.6" transform="rotate(-40 8 45)"/>
+                <!-- Marigold -->
+                <circle cx="26" cy="14" r="9" fill="#F5A052" opacity="0.85"/>
+                <circle cx="26" cy="14" r="6" fill="#E86A3A" opacity="0.7"/>
+                <circle cx="26" cy="14" r="3" fill="#F5C441"/>
               </svg>
               <div class="event-card__content">
                 <h4 class="event-card__name">Haldi</h4>
@@ -546,9 +726,16 @@
             </article>
 
             <article class="event-card event-card--gold">
-              <svg class="event-card__arch-svg" viewBox="0 0 120 60" fill="none" aria-hidden="true">
-                <path d="M10,60 L10,30 Q10,10 60,10 Q110,10 110,30 L110,60" stroke="currentColor" stroke-width="2" fill="none"/>
-                <path d="M20,60 L20,35 Q20,20 60,20 Q100,20 100,35 L100,60" stroke="currentColor" stroke-width="1" opacity="0.5" fill="none"/>
+              <svg class="event-card__floral event-card__floral--right" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+                <path d="M60,60 Q50,40 45,25 Q42,15 35,10" stroke="#8FA888" stroke-width="1.5" fill="none"/>
+                <ellipse cx="52" cy="45" rx="5" ry="9" fill="#6B8E6B" opacity="0.6" transform="rotate(40 52 45)"/>
+                <!-- Buttercup -->
+                <ellipse cx="34" cy="13" rx="7" ry="5" fill="#F5C441" opacity="0.9"/>
+                <ellipse cx="34" cy="13" rx="7" ry="5" fill="#F5C441" opacity="0.9" transform="rotate(72 34 13)"/>
+                <ellipse cx="34" cy="13" rx="7" ry="5" fill="#F5C441" opacity="0.9" transform="rotate(144 34 13)"/>
+                <ellipse cx="34" cy="13" rx="7" ry="5" fill="#F5C441" opacity="0.9" transform="rotate(216 34 13)"/>
+                <ellipse cx="34" cy="13" rx="7" ry="5" fill="#F5C441" opacity="0.9" transform="rotate(288 34 13)"/>
+                <circle cx="34" cy="13" r="3" fill="#E86A3A" opacity="0.6"/>
               </svg>
               <div class="event-card__content">
                 <h4 class="event-card__name">Baarat</h4>
@@ -558,9 +745,14 @@
             </article>
 
             <article class="event-card event-card--pink">
-              <svg class="event-card__arch-svg" viewBox="0 0 120 60" fill="none" aria-hidden="true">
-                <path d="M10,60 L10,30 Q10,10 60,10 Q110,10 110,30 L110,60" stroke="currentColor" stroke-width="2" fill="none"/>
-                <path d="M20,60 L20,35 Q20,20 60,20 Q100,20 100,35 L100,60" stroke="currentColor" stroke-width="1" opacity="0.5" fill="none"/>
+              <svg class="event-card__floral" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+                <path d="M0,60 Q10,40 15,25 Q18,15 25,10" stroke="#8FA888" stroke-width="1.5" fill="none"/>
+                <ellipse cx="8" cy="45" rx="5" ry="9" fill="#6B8E6B" opacity="0.6" transform="rotate(-40 8 45)"/>
+                <!-- Rose -->
+                <circle cx="27" cy="13" r="11" fill="#D4567A" opacity="0.5"/>
+                <circle cx="27" cy="13" r="8" fill="#D4567A" opacity="0.6"/>
+                <circle cx="27" cy="13" r="5" fill="#D4567A" opacity="0.8"/>
+                <circle cx="27" cy="13" r="2" fill="#9E4B6C"/>
               </svg>
               <div class="event-card__content">
                 <h4 class="event-card__name">Jaimala & Reception</h4>
@@ -570,9 +762,14 @@
             </article>
 
             <article class="event-card event-card--pink">
-              <svg class="event-card__arch-svg" viewBox="0 0 120 60" fill="none" aria-hidden="true">
-                <path d="M10,60 L10,30 Q10,10 60,10 Q110,10 110,30 L110,60" stroke="currentColor" stroke-width="2" fill="none"/>
-                <path d="M20,60 L20,35 Q20,20 60,20 Q100,20 100,35 L100,60" stroke="currentColor" stroke-width="1" opacity="0.5" fill="none"/>
+              <svg class="event-card__floral event-card__floral--right" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+                <path d="M60,60 Q50,40 45,25 Q42,15 35,10" stroke="#8FA888" stroke-width="1.5" fill="none"/>
+                <ellipse cx="52" cy="45" rx="5" ry="9" fill="#6B8E6B" opacity="0.6" transform="rotate(40 52 45)"/>
+                <!-- Poppy -->
+                <ellipse cx="33" cy="12" rx="11" ry="9" fill="#E86A3A" opacity="0.85"/>
+                <ellipse cx="31" cy="10" rx="9" ry="7" fill="#F5A052" opacity="0.7"/>
+                <circle cx="32" cy="11" r="4" fill="#3D5C3D" opacity="0.7"/>
+                <circle cx="32" cy="11" r="2" fill="#F5C441"/>
               </svg>
               <div class="event-card__content">
                 <h4 class="event-card__name">Pheras</h4>
@@ -588,31 +785,72 @@
 
     <!-- RSVP Section -->
     <section id="rsvp" class="section section--rsvp">
-      <!-- Decorative Lotus - Left -->
-      <div class="section-decor section-decor--lotus section-decor--left" aria-hidden="true">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M30,55 Q30,35 30,15 Q38,25 42,40 Q38,50 30,55 Q22,50 18,40 Q22,25 30,15" fill="currentColor" opacity="0.8"/>
-          <path d="M30,55 Q20,45 10,38 Q15,28 25,22 Q28,35 30,55" fill="currentColor" opacity="0.6"/>
-          <path d="M30,55 Q40,45 50,38 Q45,28 35,22 Q32,35 30,55" fill="currentColor" opacity="0.6"/>
-        </svg>
-      </div>
-      <!-- Decorative Lotus - Right -->
-      <div class="section-decor section-decor--lotus section-decor--right" aria-hidden="true">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M30,55 Q30,35 30,15 Q38,25 42,40 Q38,50 30,55 Q22,50 18,40 Q22,25 30,15" fill="currentColor" opacity="0.8"/>
-          <path d="M30,55 Q20,45 10,38 Q15,28 25,22 Q28,35 30,55" fill="currentColor" opacity="0.6"/>
-          <path d="M30,55 Q40,45 50,38 Q45,28 35,22 Q32,35 30,55" fill="currentColor" opacity="0.6"/>
+      <!-- RSVP Floral Arrangement - Right Side (faded) -->
+      <div class="rsvp-floral" aria-hidden="true">
+        <svg viewBox="0 0 120 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Main stem -->
+          <path d="M100,400 Q90,320 95,240 Q100,160 85,80 Q80,40 70,10" stroke="#8FA888" stroke-width="2" fill="none" opacity="0.5"/>
+          <!-- Branch -->
+          <path d="M95,280 Q70,260 50,270" stroke="#8FA888" stroke-width="1.5" fill="none" opacity="0.4"/>
+          <path d="M90,180 Q60,160 40,175" stroke="#8FA888" stroke-width="1.5" fill="none" opacity="0.4"/>
+          <!-- Leaves -->
+          <ellipse cx="90" cy="350" rx="10" ry="18" fill="#6B8E6B" opacity="0.4" transform="rotate(20 90 350)"/>
+          <ellipse cx="98" cy="250" rx="8" ry="15" fill="#6B8E6B" opacity="0.35" transform="rotate(-15 98 250)"/>
+          <ellipse cx="88" cy="140" rx="7" ry="12" fill="#6B8E6B" opacity="0.3" transform="rotate(25 88 140)"/>
+          <!-- Cosmos -->
+          <g opacity="0.5">
+            <ellipse cx="50" cy="270" rx="16" ry="6" fill="#E8707A"/>
+            <ellipse cx="50" cy="270" rx="16" ry="6" fill="#E8707A" transform="rotate(45 50 270)"/>
+            <ellipse cx="50" cy="270" rx="16" ry="6" fill="#E8707A" transform="rotate(90 50 270)"/>
+            <ellipse cx="50" cy="270" rx="16" ry="6" fill="#E8707A" transform="rotate(135 50 270)"/>
+            <circle cx="50" cy="270" r="5" fill="#F5C441"/>
+          </g>
+          <!-- Rose -->
+          <g opacity="0.45">
+            <circle cx="42" cy="175" r="14" fill="#D4567A" opacity="0.5"/>
+            <circle cx="42" cy="175" r="10" fill="#D4567A" opacity="0.6"/>
+            <circle cx="42" cy="175" r="6" fill="#D4567A" opacity="0.8"/>
+            <circle cx="42" cy="175" r="3" fill="#9E4B6C"/>
+          </g>
+          <!-- Small poppy at top -->
+          <g opacity="0.4">
+            <ellipse cx="72" cy="50" rx="14" ry="11" fill="#E86A3A"/>
+            <ellipse cx="70" cy="47" rx="11" ry="8" fill="#F5A052" opacity="0.8"/>
+            <circle cx="71" cy="48" r="4" fill="#3D5C3D" opacity="0.6"/>
+          </g>
+          <!-- Buds -->
+          <ellipse cx="85" cy="100" rx="3" ry="6" fill="#9E4B6C" opacity="0.4"/>
+          <ellipse cx="80" cy="115" rx="2" ry="5" fill="#9E4B6C" opacity="0.35"/>
         </svg>
       </div>
       <div class="container">
-        <!-- Decorative Divider -->
-        <div class="section-divider" aria-hidden="true">
-          <svg class="divider-svg" viewBox="0 0 200 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path class="divider-line" d="M0,15 L70,15" stroke="currentColor" stroke-width="1"/>
-            <circle class="divider-dot" cx="85" cy="15" r="2" fill="currentColor"/>
-            <path class="divider-lotus" d="M100,8 Q100,15 100,22 M95,12 Q100,18 105,12 M90,15 Q100,20 110,15" stroke="currentColor" stroke-width="1.5" fill="none"/>
-            <circle class="divider-dot" cx="115" cy="15" r="2" fill="currentColor"/>
-            <path class="divider-line" d="M130,15 L200,15" stroke="currentColor" stroke-width="1"/>
+        <!-- Floral Section Divider -->
+        <div class="floral-divider" aria-hidden="true">
+          <svg viewBox="0 0 400 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="divider-stem" d="M0,40 Q50,35 100,40 Q130,42 160,40" stroke="#8FA888" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path class="divider-stem divider-stem--delay" d="M400,40 Q350,35 300,40 Q270,42 240,40" stroke="#8FA888" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <ellipse cx="60" cy="38" rx="8" ry="14" fill="#6B8E6B" opacity="0.7" transform="rotate(-30 60 38)"/>
+            <ellipse cx="340" cy="38" rx="8" ry="14" fill="#6B8E6B" opacity="0.7" transform="rotate(30 340 38)"/>
+            <!-- Center poppy -->
+            <g class="divider-bloom">
+              <ellipse cx="200" cy="40" rx="18" ry="14" fill="#E86A3A" opacity="0.85"/>
+              <ellipse cx="198" cy="37" rx="14" ry="11" fill="#F5A052" opacity="0.75"/>
+              <circle cx="199" cy="38" r="5" fill="#3D5C3D" opacity="0.7"/>
+              <circle cx="199" cy="38" r="2.5" fill="#F5C441"/>
+            </g>
+            <!-- Side cosmos -->
+            <g class="divider-bloom divider-bloom--delay1">
+              <ellipse cx="155" cy="42" rx="12" ry="5" fill="#E8707A" opacity="0.8"/>
+              <ellipse cx="155" cy="42" rx="12" ry="5" fill="#E8707A" opacity="0.8" transform="rotate(60 155 42)"/>
+              <ellipse cx="155" cy="42" rx="12" ry="5" fill="#E8707A" opacity="0.8" transform="rotate(120 155 42)"/>
+              <circle cx="155" cy="42" r="3" fill="#F5C441"/>
+            </g>
+            <g class="divider-bloom divider-bloom--delay2">
+              <ellipse cx="245" cy="42" rx="12" ry="5" fill="#E8707A" opacity="0.8"/>
+              <ellipse cx="245" cy="42" rx="12" ry="5" fill="#E8707A" opacity="0.8" transform="rotate(60 245 42)"/>
+              <ellipse cx="245" cy="42" rx="12" ry="5" fill="#E8707A" opacity="0.8" transform="rotate(120 245 42)"/>
+              <circle cx="245" cy="42" r="3" fill="#F5C441"/>
+            </g>
           </svg>
         </div>
         <h2 class="section__title">RSVP</h2>
@@ -665,33 +903,54 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <!-- Botanical Border -->
-    <div class="footer__border" aria-hidden="true">
-      <svg class="footer-border-svg" viewBox="0 0 1200 60" preserveAspectRatio="none" fill="none">
-        <!-- Repeating leaf pattern -->
-        <g class="border-pattern">
-          <path d="M0,30 Q30,10 60,30 Q90,50 120,30" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
-          <path d="M120,30 Q150,10 180,30 Q210,50 240,30" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
-          <path d="M240,30 Q270,10 300,30 Q330,50 360,30" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
-          <path d="M360,30 Q390,10 420,30 Q450,50 480,30" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
-          <path d="M480,30 Q510,10 540,30 Q570,50 600,30" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
-          <path d="M600,30 Q630,10 660,30 Q690,50 720,30" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
-          <path d="M720,30 Q750,10 780,30 Q810,50 840,30" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
-          <path d="M840,30 Q870,10 900,30 Q930,50 960,30" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
-          <path d="M960,30 Q990,10 1020,30 Q1050,50 1080,30" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
-          <path d="M1080,30 Q1110,10 1140,30 Q1170,50 1200,30" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
-          <!-- Small leaves at intersections -->
-          <ellipse cx="60" cy="30" rx="4" ry="8" fill="currentColor" opacity="0.2" transform="rotate(-20 60 30)"/>
-          <ellipse cx="180" cy="30" rx="4" ry="8" fill="currentColor" opacity="0.2" transform="rotate(20 180 30)"/>
-          <ellipse cx="300" cy="30" rx="4" ry="8" fill="currentColor" opacity="0.2" transform="rotate(-20 300 30)"/>
-          <ellipse cx="420" cy="30" rx="4" ry="8" fill="currentColor" opacity="0.2" transform="rotate(20 420 30)"/>
-          <ellipse cx="540" cy="30" rx="4" ry="8" fill="currentColor" opacity="0.2" transform="rotate(-20 540 30)"/>
-          <ellipse cx="660" cy="30" rx="4" ry="8" fill="currentColor" opacity="0.2" transform="rotate(20 660 30)"/>
-          <ellipse cx="780" cy="30" rx="4" ry="8" fill="currentColor" opacity="0.2" transform="rotate(-20 780 30)"/>
-          <ellipse cx="900" cy="30" rx="4" ry="8" fill="currentColor" opacity="0.2" transform="rotate(20 900 30)"/>
-          <ellipse cx="1020" cy="30" rx="4" ry="8" fill="currentColor" opacity="0.2" transform="rotate(-20 1020 30)"/>
-          <ellipse cx="1140" cy="30" rx="4" ry="8" fill="currentColor" opacity="0.2" transform="rotate(20 1140 30)"/>
+    <!-- Floral Garland Border -->
+    <div class="footer__garland" aria-hidden="true">
+      <svg viewBox="0 0 1200 100" preserveAspectRatio="none" fill="none">
+        <!-- Main vine -->
+        <path d="M0,50 Q100,30 200,50 Q300,70 400,50 Q500,30 600,50 Q700,70 800,50 Q900,30 1000,50 Q1100,70 1200,50" stroke="#8FA888" stroke-width="2" fill="none" opacity="0.4"/>
+
+        <!-- Leaves along vine -->
+        <ellipse cx="50" cy="45" rx="8" ry="14" fill="#6B8E6B" opacity="0.3" transform="rotate(-30 50 45)"/>
+        <ellipse cx="150" cy="40" rx="6" ry="12" fill="#3D5C3D" opacity="0.25" transform="rotate(20 150 40)"/>
+        <ellipse cx="250" cy="55" rx="7" ry="13" fill="#6B8E6B" opacity="0.3" transform="rotate(-15 250 55)"/>
+        <ellipse cx="350" cy="60" rx="6" ry="11" fill="#3D5C3D" opacity="0.25" transform="rotate(25 350 60)"/>
+        <ellipse cx="450" cy="45" rx="8" ry="14" fill="#6B8E6B" opacity="0.3" transform="rotate(-20 450 45)"/>
+        <ellipse cx="550" cy="40" rx="6" ry="12" fill="#3D5C3D" opacity="0.25" transform="rotate(15 550 40)"/>
+        <ellipse cx="650" cy="55" rx="7" ry="13" fill="#6B8E6B" opacity="0.3" transform="rotate(-25 650 55)"/>
+        <ellipse cx="750" cy="60" rx="6" ry="11" fill="#3D5C3D" opacity="0.25" transform="rotate(20 750 60)"/>
+        <ellipse cx="850" cy="45" rx="8" ry="14" fill="#6B8E6B" opacity="0.3" transform="rotate(-15 850 45)"/>
+        <ellipse cx="950" cy="40" rx="6" ry="12" fill="#3D5C3D" opacity="0.25" transform="rotate(25 950 40)"/>
+        <ellipse cx="1050" cy="55" rx="7" ry="13" fill="#6B8E6B" opacity="0.3" transform="rotate(-20 1050 55)"/>
+        <ellipse cx="1150" cy="45" rx="6" ry="11" fill="#3D5C3D" opacity="0.25" transform="rotate(15 1150 45)"/>
+
+        <!-- Cosmos flowers -->
+        <g opacity="0.35">
+          <ellipse cx="100" cy="35" rx="12" ry="5" fill="#E8707A"/><ellipse cx="100" cy="35" rx="12" ry="5" fill="#E8707A" transform="rotate(60 100 35)"/><ellipse cx="100" cy="35" rx="12" ry="5" fill="#E8707A" transform="rotate(120 100 35)"/><circle cx="100" cy="35" r="4" fill="#F5C441"/>
         </g>
+        <g opacity="0.35">
+          <ellipse cx="500" cy="35" rx="12" ry="5" fill="#E8707A"/><ellipse cx="500" cy="35" rx="12" ry="5" fill="#E8707A" transform="rotate(60 500 35)"/><ellipse cx="500" cy="35" rx="12" ry="5" fill="#E8707A" transform="rotate(120 500 35)"/><circle cx="500" cy="35" r="4" fill="#F5C441"/>
+        </g>
+        <g opacity="0.35">
+          <ellipse cx="900" cy="35" rx="12" ry="5" fill="#E8707A"/><ellipse cx="900" cy="35" rx="12" ry="5" fill="#E8707A" transform="rotate(60 900 35)"/><ellipse cx="900" cy="35" rx="12" ry="5" fill="#E8707A" transform="rotate(120 900 35)"/><circle cx="900" cy="35" r="4" fill="#F5C441"/>
+        </g>
+
+        <!-- Poppies -->
+        <g opacity="0.4">
+          <ellipse cx="300" cy="65" rx="14" ry="11" fill="#E86A3A"/><ellipse cx="298" cy="62" rx="11" ry="8" fill="#F5A052" opacity="0.8"/><circle cx="299" cy="63" r="4" fill="#3D5C3D" opacity="0.5"/>
+        </g>
+        <g opacity="0.4">
+          <ellipse cx="700" cy="65" rx="14" ry="11" fill="#E86A3A"/><ellipse cx="698" cy="62" rx="11" ry="8" fill="#F5A052" opacity="0.8"/><circle cx="699" cy="63" r="4" fill="#3D5C3D" opacity="0.5"/>
+        </g>
+        <g opacity="0.4">
+          <ellipse cx="1100" cy="65" rx="14" ry="11" fill="#E86A3A"/><ellipse cx="1098" cy="62" rx="11" ry="8" fill="#F5A052" opacity="0.8"/><circle cx="1099" cy="63" r="4" fill="#3D5C3D" opacity="0.5"/>
+        </g>
+
+        <!-- Marigolds (small accents) -->
+        <circle cx="200" cy="50" r="7" fill="#F5A052" opacity="0.3"/>
+        <circle cx="400" cy="50" r="6" fill="#F5A052" opacity="0.25"/>
+        <circle cx="600" cy="50" r="7" fill="#F5A052" opacity="0.3"/>
+        <circle cx="800" cy="50" r="6" fill="#F5A052" opacity="0.25"/>
+        <circle cx="1000" cy="50" r="7" fill="#F5A052" opacity="0.3"/>
       </svg>
     </div>
     <div class="footer__content">
